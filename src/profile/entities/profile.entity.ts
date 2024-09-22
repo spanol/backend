@@ -1,6 +1,6 @@
 export class Profile {
   id: number;
-  profileId: number;
-  Title: string;
+  userId: number;
+  title: string;
   image: string;
 }

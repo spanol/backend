@@ -2,7 +2,7 @@ import { registerDecorator } from 'class-validator';
 import { cpf } from 'cpf-cnpj-validator';
 
 export function Cpf() {
-  return function (object: Object, propertyName: string) {
+  return function (object, propertyName: string) {
     registerDecorator({
       name: 'cpf',
       target: object.constructor,

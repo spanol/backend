@@ -1,8 +1,8 @@
-import { Gamelist } from "src/gamelist/entities/gamelist.entity";
-import { Profile } from "src/profile/entities/profile.entity";
+import { Gamelist } from 'src/gamelist/entities/gamelist.entity';
+import { Profile } from 'src/profile/entities/profile.entity';
 
 export class User {
-  id?: number;
+  id: number;
   name: string;
   surname: string;
   email: string;

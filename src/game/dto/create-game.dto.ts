@@ -1,11 +1,14 @@
-import { IsDate, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { Gamelist } from "src/gamelist/entities/gamelist.entity";
-import { CreateGenrelistDto } from "src/genrelist/dto/create-genrelist.dto";
-import { Genrelist } from "src/genrelist/entities/genrelist.entity";
-import { CreateUserDto } from "src/user/dto/create-user.dto";
-import { Game } from "../entities/game.entity";
+import {
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { CreateGenrelistDto } from 'src/genrelist/dto/create-genrelist.dto';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
 
-export class CreateGameDto extends Game {
+export class CreateGameDto {
   @IsString()
   @IsNotEmpty()
   title: string;
@@ -34,10 +37,18 @@ export class CreateGameDto extends Game {
   @IsNotEmpty()
   gameplay?: string;
 
+  @IsString()
+  @IsNotEmpty()
+  trailerurl: string;
+
+  @IsString()
+  @IsNotEmpty()
+  gameplayurl: string;
+
   @IsOptional()
   @IsInt()
   User?: CreateUserDto[];
-  
+
   @IsOptional()
   @IsInt()
   Genre?: CreateGenrelistDto[];

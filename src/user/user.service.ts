@@ -7,15 +7,16 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly prisma:PrismaService){} 
+  constructor(private readonly prisma: PrismaService) {}
   async create(dto: CreateUserDto) {
-   const profile = dto.profile
-   delete dto.profile
+    console.log(dto);
+    const profile = dto.profile;
+    delete dto.profile;
     const data: Prisma.UserCreateInput = {
       ...dto,
       password: await bcrypt.hash(dto.password, 10),
-      profiles:{
-        create:profile,
+      profiles: {
+        create: profile,
       },
     };
 
@@ -32,24 +33,24 @@ export class UserService {
 
   findById(id: number) {
     return this.prisma.user.findUnique({
-      where: {id},
+      where: { id },
     });
   }
 
   findByEmail(email: string) {
-    return this.prisma.user.findUnique({ where: {email} });
+    return this.prisma.user.findUnique({ where: { email } });
   }
 
   update(id: number, data: UpdateUserDto) {
     return this.prisma.user.update({
-      where: {id},
+      where: { id },
       data,
     });
   }
 
   remove(id: number) {
     return this.prisma.user.delete({
-      where: {id},
+      where: { id },
     });
   }
 }

@@ -1,14 +1,9 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { CreateGameDto } from "src/game/dto/create-game.dto";
-import { Gamelist } from "../entities/gamelist.entity";
+import { IsInt } from 'class-validator';
 
-export class CreateGamelistDto extends Gamelist {
-    @IsString()
-    @IsNotEmpty()
-    name: string;
+export class CreateGamelistDto {
+  @IsInt()
+  userId: number;
 
-    @IsInt()
-    @IsOptional()
-    GameId: number
+  @IsInt()
+  gameId: number;
 }
-

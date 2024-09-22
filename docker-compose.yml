@@ -1,0 +1,28 @@
+services:
+  api:
+    container_name: api
+    image: node:13-alpine
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    working_dir: /app
+    volumes:
+      - ./:/app
+    stdin_open: true
+    tty: true
+
+  db:
+    container_name: postgres
+    image: postgres:15-alpine
+    ports:
+      - '5435:5432'
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Vini1234
+      - POSTGRES+_USER=postgres
+      - POSTGRES_DB=gamesteam
+
+volumes:
+  data:

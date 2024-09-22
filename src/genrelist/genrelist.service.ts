@@ -5,34 +5,43 @@ import { UpdateGenrelistDto } from './dto/update-genrelist.dto';
 
 @Injectable()
 export class GenrelistService {
-  constructor(private readonly prisma:PrismaService){} 
-  private readonly _include={
-    game:{
-      select:{
-      id: true,
-      title: true,
-      description:true,
-      gamecover:true,
-      year:true,
-      nota:true,
-      trailerurl:true,
-      gameplayurl:true,
-      gamelist: true,
-      genrelist: true,
-      }
+  constructor(private readonly prisma: PrismaService) {}
+
+  private readonly _include = {
+    game: {
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        gamecover: true,
+        year: true,
+        nota: true,
+        trailerurl: true,
+        gameplayurl: true,
+        gamelist: true,
+        genrelist: true,
+      },
     },
-    genre:{
-      select:{
-      id: true,
-      name: true,
-      genrelist: true,
-      }
-    }
-  }
+    genre: {
+      select: {
+        id: true,
+        name: true,
+        genrelist: true,
+      },
+    },
+  };
+
   create(data: CreateGenrelistDto) {
     return this.prisma.genre_list.create({
-     data,
-     include: this._include,
+      data: {
+        // game: {
+        //   connect: { id: data.gameId }, // Conectando o jogo ao gênero
+        // },
+        genre: {
+          connect: { id: data.genreId }, // Conectando o gênero ao jogo
+        },
+      },
+      include: this._include,
     });
   }
 
@@ -44,22 +53,29 @@ export class GenrelistService {
 
   findOne(id: number) {
     return this.prisma.genre_list.findUnique({
-      where: {id},
+      where: { id },
       include: this._include,
     });
   }
 
   update(id: number, data: UpdateGenrelistDto) {
     return this.prisma.genre_list.update({
-      where: {id},
-      data,
+      where: { id },
+      data: {
+        // game: {
+        //   connect: { id: data.gameId }, // Conectando o novo jogo ao gênero
+        // },
+        genre: {
+          connect: { id: data.genreId }, // Conectando o novo gênero ao jogo
+        },
+      },
       include: this._include,
     });
   }
 
   remove(id: number) {
     return this.prisma.genre_list.delete({
-      where: {id},
+      where: { id },
     });
   }
 }

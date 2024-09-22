@@ -5,6 +5,6 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Module({
   controllers: [GenreController],
-  providers: [GenreService,PrismaService]
+  providers: [GenreService, PrismaService],
 })
 export class GenreModule {}

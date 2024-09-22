@@ -1,10 +1,9 @@
-import { IsInt } from "class-validator";
-import { Genrelist } from "../entities/genrelist.entity";
+import { IsInt } from 'class-validator';
 
-export class CreateGenrelistDto extends Genrelist {
+export class CreateGenrelistDto {
   @IsInt()
-  GenreId:number;
+  gameId: number;
 
   @IsInt()
-  GameId:number;
+  genreId: number;
 }

@@ -1,5 +1,5 @@
 export class Genrelist {
-  id?:number;
-  GenreId:number;
-  GameId:number;
+  id?: number;
+  GenreId: number;
+  GameId: number;
 }

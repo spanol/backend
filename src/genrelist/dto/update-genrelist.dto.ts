@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateGenrelistDto } from './create-genrelist.dto';
+import { IsInt, IsOptional } from 'class-validator';
 
-export class UpdateGenrelistDto extends PartialType(CreateGenrelistDto) {}
+export class UpdateGenrelistDto {
+  @IsOptional()
+  @IsInt()
+  gameId?: number;
+
+  @IsOptional()
+  @IsInt()
+  genreId?: number;
+}

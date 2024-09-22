@@ -5,37 +5,41 @@ import { UpdateGamelistDto } from './dto/update-gamelist.dto';
 
 @Injectable()
 export class GamelistService {
-  constructor(private readonly prisma:PrismaService){}
-  private readonly _include={
-    user:{
-      select:{
-        name:true,
-        UserId:true,
-    }
-  },
-  game:{
-    select:{
-    id: true,
-    title: true,
-    description:true,
-    gamecover:true,
-    year:true,
-    nota:true,
-    trailerurl:true,
-    gameplayurl:true,
-    gamelist: true,
-    genrelist: true,
-    }
-  }
-  }
-
-
-
+  constructor(private readonly prisma: PrismaService) {}
+  private readonly _include = {
+    user: {
+      select: {
+        name: true,
+        UserId: true,
+      },
+    },
+    game: {
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        gamecover: true,
+        year: true,
+        nota: true,
+        trailerurl: true,
+        gameplayurl: true,
+        gamelist: true,
+        genrelist: true,
+      },
+    },
+  };
 
   create(data: CreateGamelistDto) {
     return this.prisma.game_list.create({
       include: this._include,
-      data,
+      data: {
+        user: {
+          connect: { id: data.userId }, // Conectando o usuário pelo ID
+        },
+        game: {
+          connect: { id: data.gameId }, // Conectando o jogo pelo ID
+        },
+      },
     });
   }
 
@@ -45,20 +49,20 @@ export class GamelistService {
 
   findOne(id: number) {
     return this.prisma.game_list.findUnique({
-      where: {id},
+      where: { id },
     });
   }
 
   update(id: number, data: UpdateGamelistDto) {
     return this.prisma.game_list.update({
-      where: {id},
+      where: { id },
       data,
     });
   }
 
   remove(id: number) {
     return this.prisma.game_list.delete({
-      where: {id},
+      where: { id },
     });
   }
 }

@@ -1,5 +1,5 @@
 export class Gamelist {
   id: number;
-  UserId: number;
-  GameId: number;
+  userId: number;
+  gameId: number;
 }

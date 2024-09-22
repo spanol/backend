@@ -1,7 +1,7 @@
-import { Genrelist } from "src/genrelist/entities/genrelist.entity";
+import { Genrelist } from 'src/genrelist/entities/genrelist.entity';
 
 export class Genre {
-  id?: number;
+  id: number;
   name: string;
   genrelist?: Genrelist[];
 }

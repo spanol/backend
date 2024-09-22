@@ -20,7 +20,7 @@ async function bootstrap() {
   );
 
   // Interceptors
-  app.useGlobalInterceptors(new UnauthorizedInterceptor());
+  // app.useGlobalInterceptors(new UnauthorizedInterceptor());
 
   await app.listen(3000);
 }

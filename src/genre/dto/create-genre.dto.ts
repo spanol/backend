@@ -1,13 +1,11 @@
-import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { CreateGenrelistDto } from "src/genrelist/dto/create-genrelist.dto";
-import { Genre } from "../entities/genre.entity";
+import { IsArray, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateGenreDto extends Genre {
+export class CreateGenreDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @IsInt()
-  @IsOptional()
-  genrelist?: CreateGenrelistDto[];
+  @IsArray()
+  @IsInt({ each: true })
+  games: number[]; // Lista de IDs de jogos relacionados
 }
